@@ -1,8 +1,8 @@
 import argparse
+from keras.datasets import fashion_mnist
 
-def get_args():
-    parser = argparse.ArgumentParser(description="Neural Network Training Configuration")
-    
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
     parser.add_argument("-wp", "--wandb_project", type=str, default="myprojectname", 
                         help="Project name used to track experiments in Weights & Biases dashboard")
     parser.add_argument("-we", "--wandb_entity", type=str, default="myname", 
@@ -44,9 +44,5 @@ def get_args():
     
     parser.add_argument("-a", "--activation", type=str, choices=["identity", "sigmoid", "tanh", "ReLU"], default="sigmoid", 
                         help="Activation function to use")
-    
-    return parser.parse_args()
-
-if __name__ == "__main__":
-    args = get_args()
+    args = parser.parse_args()
     print(args)
