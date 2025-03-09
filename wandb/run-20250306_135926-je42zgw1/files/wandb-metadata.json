@@ -1,0 +1,31 @@
+{
+  "os": "Linux-6.12.10-zen1-1-zen-x86_64-with-glibc2.40",
+  "python": "CPython 3.12.8",
+  "startedAt": "2025-03-06T08:29:26.723806Z",
+  "program": "/home/sherry/Code/DA6401-Assignment-1/sweep.py",
+  "codePath": "sweep.py",
+  "git": {
+    "remote": "git@github.com:SherryS997/DA6401-Assignment-1.git",
+    "commit": "9752b0509bce9b2f3bb818b7c702d6efce821a45"
+  },
+  "email": "ns25z061@smail.iitm.ac.in",
+  "root": "/home/sherry/Code/DA6401-Assignment-1",
+  "host": "sherry",
+  "executable": "/home/sherry/Code/DA6401-Assignment-1/env/bin/python",
+  "codePathLocal": "sweep.py",
+  "cpu_count": 6,
+  "cpu_count_logical": 12,
+  "disk": {
+    "/": {
+      "total": "8035430400",
+      "used": "139264"
+    }
+  },
+  "memory": {
+    "total": "16070860800"
+  },
+  "cpu": {
+    "count": 6,
+    "countLogical": 12
+  }
+}

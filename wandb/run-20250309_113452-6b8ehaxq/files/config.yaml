@@ -1,0 +1,49 @@
+_wandb:
+    value:
+        cli_version: 0.19.8
+        m: []
+        python_version: 3.12.8
+        t:
+            "1":
+                - 2
+                - 3
+                - 35
+                - 55
+            "2":
+                - 2
+                - 3
+                - 35
+                - 55
+            "3":
+                - 23
+                - 55
+            "4": 3.12.8
+            "5": 0.19.8
+            "8":
+                - 2
+                - 5
+            "12": 0.19.8
+            "13": linux-x86_64
+activation:
+    value: tanh
+batch_size:
+    value: 64
+epochs:
+    value: 10
+hidden_layers:
+    value:
+        - 128
+        - 128
+        - 128
+        - 128
+        - 128
+learning_rate:
+    value: 0.0007500088034903662
+optimizer:
+    value: rmsprop
+trial_number:
+    value: 4
+weight_decay:
+    value: 0.0004775874424806941
+weight_init:
+    value: random
