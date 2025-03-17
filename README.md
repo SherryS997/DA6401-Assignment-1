@@ -1,7 +1,7 @@
 # DA6401 - Assignment 1
 
 ## Links
-- [Weights & Biases Report](https://wandb.ai/ns25z061-indian-institute-of-technology-madras/fashion_mnist_ffnn/reports/DA6401-Assignment-1--VmlldzoxMTgzMTQ5NQ)
+- [Weights & Biases Report](https://wandb.ai/ns25z061-indian-institute-of-technology-madras/fashion_mnist_ffnn/reports/DA6401-Assignment-1--VmlldzoxMTgzMTQ5NQ?accessToken=9bqx0bksr03ba80v4u2008ee88xseq52qlrzrpe8rn1tcn4nmldqkpenx9qt6dmg)
 - [GitHub Repository](https://github.com/SherryS997/DA6401-Assignment-1)
 
 ## Code Files
