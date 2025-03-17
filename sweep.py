@@ -18,11 +18,33 @@ X_train_processed, y_train_onehot, X_val_processed, y_val_onehot = preprocess_da
 X_test_processed, y_test_onehot, _, _ = preprocess_data(X_test, y_test, X_test, y_test)
 
 input_size = X_train_processed.shape[1]
-output_size = 10  # 10 classes for Fashion MNIST
+output_size = 10
 
 def objective(trial):
-    # Initialize wandb for this trial
-    run = wandb.init(project="fashion_mnist_ffnn_optuna", reinit=True)
+    # Sample hyperparameters using Optuna
+    epochs = trial.suggest_categorical("epochs", [5, 10])
+    hidden_layers_type = trial.suggest_categorical("hidden_layers_type", ["small", "medium", "large"])
+    learning_rate = trial.suggest_float("learning_rate", 1e-4, 1e-3, log=True)
+    optimizer = trial.suggest_categorical("optimizer", ["sgd", "momentum", "nag", "rmsprop", "adam", "nadam"])
+    batch_size = trial.suggest_categorical("batch_size", [16, 32, 64])
+    weight_init = trial.suggest_categorical("weight_init", ["random", "xavier"])
+    activation = trial.suggest_categorical("activation", ["sigmoid", "tanh", "relu"])
+    weight_decay = trial.suggest_float("weight_decay", 1e-4, 0.5, log=True)
+    
+    # Create run name from hyperparameters
+    run_name = (
+        f"opt_{optimizer}_"
+        f"lyr_{hidden_layers_type}_"
+        f"act_{activation}_"
+        f"lr_{learning_rate:.1e}_"
+        f"bs_{batch_size}"
+    )
+
+    run = wandb.init(
+        project="fashion_mnist_ffnn",
+        name=run_name,
+        reinit=True
+    )
     
     # Sample hyperparameters using Optuna
     epochs = trial.suggest_categorical("epochs", [5, 10])
@@ -36,14 +58,6 @@ def objective(trial):
     else:
         hidden_layers = [128] * 5
     
-    learning_rate = trial.suggest_float("learning_rate", 1e-4, 1e-3, log=True)
-    optimizer = trial.suggest_categorical("optimizer", ["sgd", "momentum", "nag", "rmsprop", "adam", "nadam"])
-    batch_size = trial.suggest_categorical("batch_size", [16, 32, 64])
-    weight_init = trial.suggest_categorical("weight_init", ["random", "xavier"])
-    activation = trial.suggest_categorical("activation", ["sigmoid", "tanh", "relu"])
-    weight_decay = trial.suggest_float("weight_decay", 1e-4, 0.5, log=True)
-    
-    # Log hyperparameters to wandb
     config = {
         "epochs": epochs,
         "hidden_layers": hidden_layers,
@@ -76,6 +90,15 @@ def objective(trial):
         epochs=epochs, batch_size=batch_size,
         X_val=X_val_processed, y_val=y_val_onehot
     )
+
+    for epoch in range(epochs):
+        wandb.log({
+            "epoch": epoch + 1,
+            "train_loss": history["train_loss"][epoch],
+            "val_loss": history["val_loss"][epoch] if history["val_loss"] else np.nan,
+            "train_accuracy": history["train_accuracy"][epoch],
+            "val_accuracy": history["val_accuracy"][epoch]
+        })
     
     # Get final validation accuracy for optimization
     val_accuracy = history["val_accuracy"][-1] if history["val_accuracy"] else 0
@@ -115,7 +138,7 @@ def main():
     )
     
     # Run optimization with 100 trials
-    study.optimize(objective, n_trials=100)
+    study.optimize(objective, n_trials=50)
     
     # Print optimization results
     print("Best trial:")

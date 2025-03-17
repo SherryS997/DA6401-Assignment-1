@@ -1,0 +1,18 @@
+wandb_version: 1
+
+activation:
+  value: tanh
+batch_size:
+  value: 32
+epochs:
+  value: 10
+hidden_layers_type:
+  value: medium
+learning_rate:
+  value: 1.000181958141295
+optimizer:
+  value: rmsprop
+weight_decay:
+  value: 1.4226287131062565
+weight_init:
+  value: random

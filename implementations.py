@@ -2,7 +2,6 @@ import numpy as np
 import time
 
 class ActivationFunctions:
-    """Provides static methods for common activation functions and their derivatives."""
     @staticmethod
     def identity(x, derivative = False):
         """Identity activation function."""
@@ -34,7 +33,6 @@ class ActivationFunctions:
 
 
 class LossFunctions:
-    """Provides static methods for common loss functions and their derivatives."""
     @staticmethod
     def mean_squared_error(y_true, y_pred, derivative = False):
         """Mean Squared Error loss function."""
@@ -54,7 +52,6 @@ class LossFunctions:
 
 
 class Optimizers:
-    """Provides static methods for various optimization algorithms."""
     @staticmethod
     def sgd(params, grads, config):
         """Stochastic Gradient Descent optimizer."""
@@ -164,7 +161,7 @@ class Optimizers:
 
     @staticmethod
     def nadam(params, grads, config):
-        """Nadam optimizer (Adam with Nesterov momentum)."""
+        """Nadam optimizer"""
         learning_rate = config.get('learning_rate', 0.01)
         beta1 = config.get('beta1', 0.9)
         beta2 = config.get('beta2', 0.999)
@@ -197,7 +194,6 @@ class Optimizers:
 
 
 class FeedForwardNeuralNetwork:
-    """A simple feedforward neural network class."""
     def __init__(self, input_size, output_size,
                  hidden_layers = [128],
                  activation = 'sigmoid',
@@ -206,7 +202,7 @@ class FeedForwardNeuralNetwork:
                  learning_rate = 0.01,
                  weight_init = 'random',
                  **kwargs):
-        """Initializes the FeedForwardNeuralNetwork."""
+
         self.input_size = input_size
         self.output_size = output_size
         self.hidden_layers = hidden_layers
@@ -293,9 +289,13 @@ class FeedForwardNeuralNetwork:
 
         l = len(self.layers_dims) - 1
         Z = np.dot(A[f'A{l-1}'], self.params[f'W{l}']) + self.params[f'b{l}']
+        Z = np.clip(Z, -1e10, 1e10)
         cache[f'Z{l}'] = Z
 
-        exp_Z = np.exp(Z - np.max(Z, axis=1, keepdims=True))
+        Z_max = np.max(Z, axis=1, keepdims=True)
+        Z_safe = np.clip(Z - Z_max, -500, 500)  # Prevent extreme values
+        exp_Z = np.exp(Z_safe)
+
         A[f'A{l}'] = exp_Z / np.sum(exp_Z, axis=1, keepdims=True)
 
         return cache, A

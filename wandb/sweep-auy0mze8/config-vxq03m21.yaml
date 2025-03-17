@@ -1,0 +1,18 @@
+wandb_version: 1
+
+activation:
+  value: sigmoid
+batch_size:
+  value: 64
+epochs:
+  value: 5
+hidden_layers_type:
+  value: small
+learning_rate:
+  value: 1.0003844681517546
+optimizer:
+  value: adam
+weight_decay:
+  value: 1.3821404366977088
+weight_init:
+  value: xavier

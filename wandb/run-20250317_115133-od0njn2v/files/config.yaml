@@ -1,0 +1,53 @@
+_wandb:
+    value:
+        cli_version: 0.19.8
+        m: []
+        python_version: 3.12.8
+        t:
+            "1":
+                - 2
+                - 3
+                - 5
+                - 35
+                - 53
+                - 55
+            "2":
+                - 2
+                - 3
+                - 5
+                - 35
+                - 53
+                - 55
+            "3":
+                - 2
+                - 23
+                - 55
+            "4": 3.12.8
+            "5": 0.19.8
+            "8":
+                - 2
+                - 5
+            "12": 0.19.8
+            "13": linux-x86_64
+activation:
+    value: relu
+batch_size:
+    value: 16
+epochs:
+    value: 5
+hidden_layers:
+    value:
+        - 64
+        - 64
+        - 64
+        - 64
+learning_rate:
+    value: 0.00017523293466848892
+optimizer:
+    value: adam
+trial_number:
+    value: 20
+weight_decay:
+    value: 0.0003264417398619994
+weight_init:
+    value: xavier

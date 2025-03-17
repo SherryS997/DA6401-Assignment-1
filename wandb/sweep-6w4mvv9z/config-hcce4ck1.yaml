@@ -1,0 +1,18 @@
+wandb_version: 1
+
+activation:
+  value: relu
+batch_size:
+  value: 32
+epochs:
+  value: 10
+hidden_layers_type:
+  value: large
+learning_rate:
+  value: 1.0005579480058058
+optimizer:
+  value: adam
+weight_decay:
+  value: 1.3469533908020097
+weight_init:
+  value: xavier

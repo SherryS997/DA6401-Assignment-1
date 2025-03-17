@@ -1,0 +1,18 @@
+wandb_version: 1
+
+activation:
+  value: tanh
+batch_size:
+  value: 32
+epochs:
+  value: 10
+hidden_layers_type:
+  value: small
+learning_rate:
+  value: 1.0007372741668823
+optimizer:
+  value: adam
+weight_decay:
+  value: 1.0216389478431902
+weight_init:
+  value: xavier
